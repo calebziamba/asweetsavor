@@ -5,12 +5,17 @@ $secondary:     #A20901;
 @import "bootstrap/scss/bootstrap";
 
 .banner {
+    flex-direction: column;
+    display: flex;
     overflow: hidden;
     position: relative;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     background-color: #80808087;
-    min-height: 350px;
+    min-height: 250px;
 
     .gatsby-image-wrapper {
         position: absolute;

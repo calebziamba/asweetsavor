@@ -4,35 +4,31 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
- import * as React from "react"
- import { useStaticQuery, graphql } from "gatsby"
- import { StaticImage } from "gatsby-plugin-image"
- 
- const SearchBar = () => {
-   // Set these values by editing "siteMetadata" in gatsby-config.js
-   const author = data.site.siteMetadata?.author
- 
-   return (
-     <div className="bio">
-       <StaticImage
-         className="bio-avatar"
-         layout="fixed"
-         formats={["auto", "webp", "avif"]}
-         src="../images/tituschu.jpg"
-         width={50}
-         height={50}
-         quality={95}
-         alt="Profile picture"
-       />
-       {author?.name && (
-         <p>
-           Written by <strong>{author.name}</strong> {author?.summary || null}
-           {` `}
-         </p>
-       )}
-     </div>
-   )
- }
- 
- export default SearchBar
- 
+import * as React from "react"
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faMagnifyingGlass
+} from '@fortawesome/free-solid-svg-icons'
+
+const SearchBar = () => {
+  return (
+    <Form className="mx-auto" style={{maxWidth: "500px"}}>
+      <InputGroup>
+        <Form.Control
+          placeholder="Search"
+          aria-label="search bar"
+          aria-describedby="search-button"
+        />
+        <Button variant="primary" id="search-button">
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </Button>
+      </InputGroup>
+    </Form>
+  )
+}
+
+export default SearchBar

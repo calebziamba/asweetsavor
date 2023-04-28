@@ -3,39 +3,30 @@ import { graphql } from "gatsby"
 
 import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
+import MediaFilter from "../components/MediaFilter"
+import ReadingLogo from "../images/papers.svg"
+import ListeningLogo from "../images/headphones.svg"
+import WatchLogo from "../images/youtube.svg"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faMagnifyingGlass
-} from '@fortawesome/free-solid-svg-icons'
+import { Col, Container, Row } from "react-bootstrap"
+import SearchBar from "../components/SearchBar"
 
 const Home = ({ data, location }) => {
   
   const siteTitle = data.site.siteMetadata?.title || ``;
   const siteDescription = data.site.siteMetadata?.description || ``;
-  const posts = data.allMarkdownRemark.nodes;
 
   return (
     <Layout location={location} title={siteTitle}>
-      <div class="d-flex flex-column justify-content-center banner">
-        <div class="container">
+      <div class="banner mb-3">
+        <Container>
           <div class="text-center">
+            <h1 className="text-light">{siteTitle}</h1>
             <h6 class="text-light fw-bold">{siteDescription}</h6>
             <p class="text-light"><i>'"For we are unto God a sweet savor of Christ" - 2 Corinthians 2:15'</i></p>
           </div>
-          <form class="row justify-content-center" method="post" action="<?php echo site_url('/archive') ?>" target="">
-            <div class="form-group position-relative col-12 col-md-10 col-xl-8 col-xxl-7">
-              <label for="searchMain" class="position-absolute text-dark" style={{color:"red", top: "0.5rem", left: "1.1rem"}}><FontAwesomeIcon icon={faMagnifyingGlass} /></label>
-              <input id="searchMain" type="search" name="searchTerm" class="form-control ps-4" placeholder="Search" />
-            </div>
-          </form>
-          <div class="text-center">
-            <a href="/archive/read" class="btn btn-primary">Read</a>
-            <a href="/archive/listen" class="btn btn-primary">Listen</a>
-            <a href="/archive/watch" class="btn btn-primary">Watch</a>
-            <a href="/topics" class="btn btn-outline-light">Browse by Topic</a>
-          </div>
-        </div>
+          <SearchBar />
+        </Container>
         <StaticImage
           formats={["auto", "webp", "jpg"]}
           className=""
@@ -44,6 +35,20 @@ const Home = ({ data, location }) => {
           alt="Flowers and fragrant oils"
         />
       </div>
+      
+      <Container>
+        <Row className="g-2">
+          <Col sm={4}>
+            <MediaFilter image={ReadingLogo} alt="document" title="READ" href="#read" />
+          </Col>
+          <Col sm={4}>
+            <MediaFilter image={ListeningLogo} alt="headphones" title="LISTEN" href="#listen"/>
+          </Col>
+          <Col sm={4}>
+            <MediaFilter image={WatchLogo} alt="YouTube logo" title="WATCH" href="https://www.youtube.com/@ASweetSavor"/>
+          </Col>
+        </Row>
+      </Container>
     </Layout>
   )
 }
@@ -56,19 +61,6 @@ export const pageQuery = graphql`
       siteMetadata {
         title,
         description
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
-        }
       }
     }
   }
