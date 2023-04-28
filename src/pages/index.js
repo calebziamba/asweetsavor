@@ -1,75 +1,61 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
-import Bio from "../components/bio"
+import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
-import Seo from "../components/seo"
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faMagnifyingGlass
+} from '@fortawesome/free-solid-svg-icons'
 
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
-  }
+const Home = ({ data, location }) => {
+  
+  const siteTitle = data.site.siteMetadata?.title || ``;
+  const siteDescription = data.site.siteMetadata?.description || ``;
+  const posts = data.allMarkdownRemark.nodes;
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
-
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+      <div class="d-flex flex-column justify-content-center banner">
+        <div class="container">
+          <div class="text-center">
+            <h6 class="text-light fw-bold">{siteDescription}</h6>
+            <p class="text-light"><i>'"For we are unto God a sweet savor of Christ" - 2 Corinthians 2:15'</i></p>
+          </div>
+          <form class="row justify-content-center" method="post" action="<?php echo site_url('/archive') ?>" target="">
+            <div class="form-group position-relative col-12 col-md-10 col-xl-8 col-xxl-7">
+              <label for="searchMain" class="position-absolute text-dark" style={{color:"red", top: "0.5rem", left: "1.1rem"}}><FontAwesomeIcon icon={faMagnifyingGlass} /></label>
+              <input id="searchMain" type="search" name="searchTerm" class="form-control ps-4" placeholder="Search" />
+            </div>
+          </form>
+          <div class="text-center">
+            <a href="/archive/read" class="btn btn-primary">Read</a>
+            <a href="/archive/listen" class="btn btn-primary">Listen</a>
+            <a href="/archive/watch" class="btn btn-primary">Watch</a>
+            <a href="/topics" class="btn btn-outline-light">Browse by Topic</a>
+          </div>
+        </div>
+        <StaticImage
+          formats={["auto", "webp", "jpg"]}
+          className=""
+          src="../images/home-hero.webp"
+          quality={95}
+          alt="Flowers and fragrant oils"
+        />
+      </div>
     </Layout>
   )
 }
 
-export default BlogIndex
+export default Home
 
 export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
-        title
+        title,
+        description
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {

@@ -1,0 +1,21 @@
+// Customize variables
+$primary:       #00203d;
+$secondary:     #A20901;
+
+@import "bootstrap/scss/bootstrap";
+
+.banner {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #80808087;
+    min-height: 350px;
+
+    .gatsby-image-wrapper {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+}
