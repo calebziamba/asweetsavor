@@ -1,7 +1,7 @@
 import * as React from "react"
 
 const ArticlePreview = () => {
-  return (<></>);
+  return <></>
 }
 
-export default ArticlePreview;
+export default ArticlePreview

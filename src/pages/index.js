@@ -12,9 +12,8 @@ import { Col, Container, Row } from "react-bootstrap"
 import SearchBar from "../components/SearchBar"
 
 const Home = ({ data, location }) => {
-  
-  const siteTitle = data.site.siteMetadata?.title || ``;
-  const siteDescription = data.site.siteMetadata?.description || ``;
+  const siteTitle = data.site.siteMetadata?.title || ``
+  const siteDescription = data.site.siteMetadata?.description || ``
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -23,7 +22,12 @@ const Home = ({ data, location }) => {
           <div class="text-center">
             <h1 className="text-light">{siteTitle}</h1>
             <h6 class="text-light fw-bold">{siteDescription}</h6>
-            <p class="text-light"><i>'"For we are unto God a sweet savor of Christ" - 2 Corinthians 2:15'</i></p>
+            <p class="text-light">
+              <i>
+                '"For we are unto God a sweet savor of Christ" - 2 Corinthians
+                2:15'
+              </i>
+            </p>
           </div>
           <SearchBar />
         </Container>
@@ -35,17 +39,32 @@ const Home = ({ data, location }) => {
           alt="Flowers and fragrant oils"
         />
       </div>
-      
+
       <Container>
         <Row className="g-2">
           <Col sm={4}>
-            <MediaFilter image={ReadingLogo} alt="document" title="READ" href="#read" />
+            <MediaFilter
+              image={ReadingLogo}
+              alt="document"
+              title="READ"
+              href="#read"
+            />
           </Col>
           <Col sm={4}>
-            <MediaFilter image={ListeningLogo} alt="headphones" title="LISTEN" href="#listen"/>
+            <MediaFilter
+              image={ListeningLogo}
+              alt="headphones"
+              title="LISTEN"
+              href="#listen"
+            />
           </Col>
           <Col sm={4}>
-            <MediaFilter image={WatchLogo} alt="YouTube logo" title="WATCH" href="https://www.youtube.com/@ASweetSavor"/>
+            <MediaFilter
+              image={WatchLogo}
+              alt="YouTube logo"
+              title="WATCH"
+              href="https://www.youtube.com/@ASweetSavor"
+            />
           </Col>
         </Row>
       </Container>
@@ -59,7 +78,7 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
-        title,
+        title
         description
       }
     }

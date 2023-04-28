@@ -1,14 +1,18 @@
 import * as React from "react"
-import { Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap"
 
 const MediaFilter = ({ image, alt, title, href }) => {
   return (
-    <div className="card h-100" style={{maxWidth: "540px"}}>
+    <div className="card h-100" style={{ maxWidth: "540px" }}>
       <a href={href} className="stretched-link"></a>
       <div className="row h-100 g-0">
         <div className="col-4">
           <Stack className="h-100 justify-content-center">
-            <img src={image} className="img-fluid rounded-start p-2" alt={alt} />
+            <img
+              src={image}
+              className="img-fluid rounded-start p-2"
+              alt={alt}
+            />
           </Stack>
         </div>
         <div className="col-8">
@@ -20,7 +24,7 @@ const MediaFilter = ({ image, alt, title, href }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MediaFilter;
+export default MediaFilter

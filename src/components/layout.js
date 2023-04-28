@@ -34,18 +34,17 @@ const Layout = ({ location, title, children }) => {
 
   return (
     <React.Fragment>
-    <Seo title="All posts" />
+      <Seo title="All posts" />
 
-    <NavBar></NavBar>
-    <div data-is-root-path={isRootPath}>
-      
-      <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
-    </div>
+      <NavBar></NavBar>
+      <div data-is-root-path={isRootPath}>
+        <main>{children}</main>
+        <footer>
+          © {new Date().getFullYear()}, Built with
+          {` `}
+          <a href="https://www.gatsbyjs.com">Gatsby</a>
+        </footer>
+      </div>
     </React.Fragment>
   )
 }

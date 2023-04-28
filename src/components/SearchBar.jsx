@@ -5,18 +5,16 @@
  */
 
 import * as React from "react"
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
+import InputGroup from "react-bootstrap/InputGroup"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faMagnifyingGlass
-} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
 const SearchBar = () => {
   return (
-    <Form className="mx-auto" style={{maxWidth: "500px"}}>
+    <Form className="mx-auto" style={{ maxWidth: "500px" }}>
       <InputGroup>
         <Form.Control
           placeholder="Search"
