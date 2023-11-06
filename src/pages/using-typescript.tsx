@@ -3,7 +3,6 @@ import * as React from "react"
 import { PageProps, Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Seo from "../components/seo"
 
 type DataProps = {
   site: {
@@ -14,10 +13,8 @@ type DataProps = {
 const UsingTypescript: React.FC<PageProps<DataProps>> = ({
   data,
   path,
-  location,
 }) => (
-  <Layout title="Using TypeScript" location={location}>
-    <Seo title="Using TypeScript" />
+  <Layout title="Using TypeScript">
     <h1>Gatsby supports TypeScript by default!</h1>
     <p>
       This means that you can create and write <em>.ts/.tsx</em> files for your
