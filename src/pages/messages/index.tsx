@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Layout from '../../components/layout'
-import { PageProps, graphql } from 'gatsby'
+import { Link, PageProps, graphql } from 'gatsby'
 
 
 const MessagesPage = ({ data }: PageProps<Queries.MessagesPageQuery>): JSX.Element => {
@@ -9,7 +9,11 @@ const MessagesPage = ({ data }: PageProps<Queries.MessagesPageQuery>): JSX.Eleme
       {
         data.allMarkdownRemark.nodes.map((node: any) => (
           <article key={node.id}>
-            <h2>{node.frontmatter.title}</h2>
+            <h2>
+              <Link to={`./${node.frontmatter.slug}`}>
+                {node.frontmatter.title}
+              </Link>
+            </h2>
             <p>Posted: {node.frontmatter.date}</p>
           </article>
         ))

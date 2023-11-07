@@ -1,5 +1,6 @@
 import * as React from "react"
 import { PageProps, graphql } from "gatsby"
+import Layout from "../../components/layout"
 
 type DataProps = {
   markdownRemark: {
@@ -7,6 +8,7 @@ type DataProps = {
       date: string,
       title: string,
       slug: string,
+      author: string,
     },
     html: TrustedHTML,
   }
@@ -18,15 +20,16 @@ export default function BlogPostTemplate({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   return (
-    <div>
+    <Layout title={frontmatter.title}>
       <div>
         <h1>{frontmatter.title}</h1>
         <h2>{frontmatter.date}</h2>
+        <h2>{frontmatter.author}</h2>
         <div
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
-    </div>
+    </Layout>
   )
 }
 
@@ -37,6 +40,7 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
+        author
       }
     }
   }
